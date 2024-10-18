@@ -1,0 +1,59 @@
+<div class="project-list-table">
+  <div class="nodata" *ngIf="projectlist.length === 0">
+    <p>Empty Project List</p>
+  </div>
+  <table class="table-def" *ngIf="projectlist.length > 0">
+    <thead class="table-row">
+      <th class="table-head">Project Name</th>
+      <th class="table-head">Project Category</th>
+      <th class="table-head">No. of Site</th>
+      <th class="table-head">Project Manager</th>
+      <th class="table-head">Contact Number</th>
+      <th class="table-head">Email Address</th>
+      <th class="table-head">Actions</th>
+    </thead>
+
+    <tbody class="table-body">
+     
+        <tr class="table-row" *ngFor="let project of projectlist | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }" ngModel> 
+          <td class="table-column">{{ project.projectName }}</td>
+          <td class="table-column">{{ project.projectCategory }}</td>
+          <td class="table-column" style="color:#39397e ">{{ no_of_site }}</td>
+          <td class="table-column">{{ project.projectManager }}</td>
+          <td class="table-column">{{ project.contactNumber }}</td>
+          <td class="table-column">{{ project.emailAddress }}</td>
+          <td class="table-column" class="icon">
+            <span class=" edit-icon" (click)="editData(project)" routerLink="/addproject"
+              ><img
+                width="128"
+                height="128"
+                src="https://img.icons8.com/pastel-glyph/128/228BE6/edit--v1.png"
+                alt="edit--v1"
+            /></span>
+            <span class=" delete-icon" (click)="deleteForm(project.id)">
+              <img
+                width="100"
+                height="100"
+                src="https://img.icons8.com/carbon-copy/100/228BE6/filled-trash.png"
+                alt="filled-trash"
+              />
+            </span>
+          </td>
+        </tr>
+     
+      
+    </tbody>
+  </table>
+  <div class="pagination">
+
+    <div class="items-count">
+      <p>{{itemsPerPage}} of {{totalItems}} enteries</p>
+        
+    </div>
+
+    <div  class="page-control">
+      <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+    </div>
+  </div>
+  
+</div>

@@ -1,0 +1,89 @@
+<div class="project">
+  <div class="add-project">
+    
+    <div class="project-text">
+      <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/1A1A1A/less-than.png" alt="less-than"/>
+      <h3>Project</h3>
+    </div>
+    <div class="add-new-project" routerLink="addproject">
+      <div class="box">
+        <p>+</p>
+      </div>
+      <div class="add" >New Project</div>
+    </div>
+  </div>
+  <div class="filter">
+    <div class="filter-text">
+      <!-- <img src="../assets/filter-icon.png" alt="filter-icon"> -->
+      <p>Filters</p>
+      <div class="down-icon" (click)="showfilterForm()">
+        <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/228BE6/less-than.png" alt="less-than"/>
+      </div>
+    </div>
+    <div class="filterform" [hidden]="showForm">
+      <form [formGroup]="addproject">
+        <div class="form-fields">
+          <div class="field">
+            <p>Project Name</p>
+            <input
+              type="text"
+              formControlName="projectName"
+              placeholder="Search by Project Name"
+            />
+            <!-- <small *ngIf="addproject.get('projectName')?.touched && addproject.get('projectName')?.errors?.['required']" style="color:red">Enter Details</small> -->
+          </div>
+  
+          <div class="field">
+            <p>Project Category</p>
+            <select
+              formControlName="projectCategory"
+              placeholder="Search by Project Name"
+            >
+              <option value="" disabled selected>
+                Search by Project Category
+              </option>
+              <option value="Road Construction">Road Construction</option>
+              <option value="Road Development">Road Development</option>
+              <option value="Bridge Construction ">Bridge Construction</option>
+              <option value="Tunnel Engineering">Tunnel Engineering</option>
+              <option value="Highway Maintenancet">Highway Maintenance</option>
+              <option value="Urban Infrastructure">Urban Infrastructure</option>
+              <option value="Railway Development">Railway Development</option>
+            </select>
+            <!-- <small *ngIf="addproject.get('projectCategory')?.touched && addproject.get('projectCategory')?.errors?.['required']" style="color:red">Select Category</small> -->
+          </div>
+  
+          <div class="field">
+            <p>Project Start Date</p>
+            <input
+              type="date"
+              onfocus="this.showPicker()"
+              [attr.min]="start_date"
+              [attr.max]="end_date"
+              formControlName="startDate"
+              placeholder="Search by Project Name"
+            />
+            <!--[attr.min]="start_date" [attr.max]="end_date" -->
+            <!-- <small *ngIf="addproject.get('startDate')?.touched && addproject.get('startDate')?.errors?.['required']" style="color:red">Select Start Date</small> -->
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <div class="clear-filter">
+    <div class="clear-filter-text">
+      
+      <p (click)="clearfilter()" [style.color]="colored()">Clear filter</p>
+    </div>
+    <div class="apply-filter">
+      <div class="download" (click)="promptbox()">
+        <p>Download Reports</p>
+      </div>
+      <div class="apply-btn" (click)="filterlist(addproject.value)">
+        <button>Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-projectlist></app-projectlist>

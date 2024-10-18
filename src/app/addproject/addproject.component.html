@@ -1,0 +1,185 @@
+<div class="form">
+  <div id="add-project">
+    <div class="project-title">
+      <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/1A1A1A/less-than.png" alt="less-than" routerLink="/"/>
+      <h3>Add new Project</h3>
+    </div>
+
+    <div class="project-form">
+      <div class="project-detail">
+        <h4>Project Details*</h4>
+      </div>
+
+      <div class="add-form">
+        <form [formGroup]="addproject">
+          <div class="form-fields">
+            <div class="field">
+              <p>Project Name* </p>
+              <input type="text" formControlName="projectName" placeholder="Enter your Name"/>
+              <small
+                *ngIf="addproject.get('projectName')?.touched && addproject.get('projectName')?.errors?.['required']"
+                style="color: red"
+                >Enter Details</small
+              >
+            </div>
+
+            <div class="field">
+              <p>Project Category*</p>
+              <select formControlName="projectCategory">
+                <option value="" selected disabled>Select Project Category</option>
+                <option value="Road Construction">
+                  Road Construction
+                </option>
+                <option value="Bridge Construction ">Bridge Construction</option>
+                <option value="Tunnel Engineering">Tunnel Engineering</option>
+                <option value="Highway Maintenancet">Highway Maintenance</option>
+                <option value="Urban Infrastructure">Urban Infrastructure</option>
+                <option value="Railway Development">Railway Development</option>
+              </select>
+              <small
+                *ngIf="addproject.get('projectCategory')?.touched && addproject.get('projectCategory')?.errors?.['required']"
+                style="color: red"
+                >Select Category</small
+              >
+            </div>
+
+            <div class="field">
+              <p>Start Date*</p>
+              <input
+                type="date"
+                formControlName="startDate"
+                [attr.min]="start_date"
+               
+                onfocus="this.showPicker()"
+                
+                
+              />
+              <small
+                *ngIf="addproject.get('startDate')?.touched && addproject.get('startDate')?.errors?.['required']"
+                style="color: red"
+                >Select Start Date</small
+              >
+            </div>
+          </div>
+
+          <div class="form-fields">
+            <div class="field" style="width: 20%">
+              <p>Project Manager*</p>
+              <input type="text" formControlName="projectManager" placeholder="Enter Project Manager">
+              <small
+                *ngIf="addproject.get('projectManager')?.touched && addproject.get('projectManager')?.errors?.['required']"
+                style="color: red"
+                >Enter Project Manager name</small
+              >
+            </div>
+
+            <div class="field" style="width: 20%">
+              <p>Contact Number*</p>
+              <input
+                type="number"
+                formControlName="contactNumber"
+                placeholder="Enter Contact Number"
+              />
+              <small
+                *ngIf="addproject.get('contactNumber')?.touched && addproject.get('contactNumber')?.errors?.['required']"
+                style="color: red"
+                >Enter Contact Number</small
+              >
+              <small
+              *ngIf="addproject.get('contactNumber')?.touched && addproject.get('contactNumber')?.errors?.['maxlength']"
+              style="color: red"
+              >Contact Number should must be 10 digit</small
+            >
+            </div>
+
+            <div class="field" style="width: 20%">
+              <p>Email Address*</p>
+              <input type="email" formControlName="emailAddress" placeholder="Enter your Email"/>
+              <small
+                *ngIf="addproject.get('emailAddress')?.touched && addproject.get('emailAddress')?.errors?.['required']"
+                style="color: red"
+                >Enter your email
+              </small>
+              <small
+                *ngIf="addproject.get('emailAddress')?.touched && addproject.get('emailAddress')?.errors?.['email']"
+                style="color: red"
+                >Enter valid email
+              </small>
+            </div>
+
+            <div class="field" style="width: 20%">
+              <p>End Date*</p>
+              <input
+                type="date"
+                formControlName="endDate"
+                [attr.min]="end_date"
+                [attr.max]=""
+                onfocus="this.showPicker()"
+                (click)="ending_date(addproject.value)"
+                
+              />
+              <small
+                *ngIf="addproject.get('endDate')?.touched && addproject.get('endDate')?.errors?.['required']"
+                style="color: red"
+                >Select End Date</small
+              >
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="project-form">
+      <div class="project-detail">
+        <h4>Shift Details*</h4>
+        <div class="down-icon" (click)="showShift()">
+          <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/228BE6/less-than.png" alt="less-than"/>
+        </div>
+      </div>
+      <div class="hidden" [hidden]="is_Shift">
+            <p>Shift Details will be displayed soon.....</p>
+      </div>
+    </div>
+
+    <div class="project-form">
+      <div class="project-detail">
+        <h4>Site Details*</h4>
+        <div class="new-site">
+          <div class="site-link">
+            <img width="26" height="26" src="https://img.icons8.com/metro/26/228BE6/link.png" alt="link"/>
+              <p>link existing site</p>
+          </div>
+
+          <div class="new-site">
+            <div class="add-new-project">
+              <div class="box">
+                <p>+</p>
+              </div>
+              <div class="add" >
+                <p>New Site</p></div>
+            </div>
+          </div>
+
+
+          <div class="down-icon" (click)="showSite()">
+            <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/228BE6/less-than.png" alt="less-than"/>
+          </div>
+        </div>
+      </div>
+      <div class="hidden" [hidden]="is_Site">
+        <p>Shift Details will be displayed soon.....</p>
+  </div>
+
+    </div>
+
+    <div id="btn">
+      <button class="clear-form" (click)="clearform()">
+        Clear
+      </button>
+      
+      <button class="add-form"(click)="onAdd(addproject)" routerLink="/" > <!-- [disabled]="isDisable" -->
+        Add Project
+      </button>
+    </div>
+  </div>
+</div>
